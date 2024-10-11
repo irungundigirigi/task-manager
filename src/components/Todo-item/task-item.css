@@ -1,0 +1,22 @@
+/* https://coolors.co/palette/ffb5a7-fcd5ce-f8edeb-f9dcc4-fec89a */
+@import url("https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap");
+
+.task {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-family: "Afacad Flux", sans-serif;
+  background-color: #fafafa;
+  border-radius: 10px;
+  color: #ffb5a7;
+  width: 500px;
+  height: 100px;
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+.subject {
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 17px;
+}
