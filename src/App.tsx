@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Task, User } from "./types/Task";
+import { AiOutlinePlus } from "react-icons/ai";
 import TaskCard from "./components/Todo-item/Todo-item";
 import "./App.css";
 
@@ -16,7 +17,13 @@ function App() {
 
   return (
     <>
-      <div className="left">{data.username}</div>
+      <div className="left">
+        {data.username}
+        <div className="create">
+          {" "}
+          Create Task <AiOutlinePlus />
+        </div>
+      </div>
 
       <div className="right">
         <ul>
