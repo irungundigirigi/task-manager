@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Task, User } from "./types/Task";
 import { AiOutlinePlus } from "react-icons/ai";
 import TaskCard from "./components/Todo-item/Todo-item";
+import Calendar from "react-calendar";
 import "./App.css";
+//https://medium.com/@suvarna.kale/react-calendar-customization-4bdf89d04dbb
 
 function App() {
   const [data, setData] = useState<Partial<User>>({});
@@ -22,6 +24,7 @@ function App() {
         <div className="create">
           {" "}
           Create Task <AiOutlinePlus />
+          <Calendar />
         </div>
       </div>
 
