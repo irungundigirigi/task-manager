@@ -1,12 +1,22 @@
 export interface Task {
-    id: number,
-    created_at: String,
-    updated_at: String,
-    object: String,
-    user_id: String,
-    task_priority: String,
-    status_id: String,
-    subject :String,
-    description: String,
-    due_date: String
+  id: string;
+  created_at: string;
+  updated_at: string;
+  object: "task";
+  user_id: string;
+  task_priority: "high" | "normal" | "low";
+  status_id: "open" | "in_progress" | "closed";
+  description: string;
+  due_date: string;
+}
+
+export interface User {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  object: string;
+  username: string;
+  password: string;
+  email: string;
+  tasks: Task[];
 }
