@@ -6,6 +6,7 @@ export interface Task {
   user_id: string;
   task_priority: "high" | "normal" | "low";
   status_id: "open" | "in_progress" | "closed";
+  subject: string;
   description: string;
   due_date: string;
 }
