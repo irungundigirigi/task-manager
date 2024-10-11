@@ -10,6 +10,9 @@
 .left {
   flex: 2;
   margin: 15px;
+  font-size: 20px;
+  color: #ffb5a7;
+  font-weight: 600;
 }
 
 .right {
