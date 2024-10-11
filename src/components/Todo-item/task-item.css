@@ -1,22 +1,36 @@
 /* https://coolors.co/palette/ffb5a7-fcd5ce-f8edeb-f9dcc4-fec89a */
-@import url("https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap");
 
 .task {
   display: flex;
   flex-direction: column;
   text-align: left;
-  font-family: "Afacad Flux", sans-serif;
-  background-color: #fafafa;
+  background-color: #ffffff;
   border-radius: 10px;
   color: #ffb5a7;
   width: 500px;
-  height: 100px;
+  height: fit-content;
   margin: 5px;
-  padding: 5px 10px;
+  padding: 10px 10px;
+}
+.topbar {
+  display: flex;
+  align-items: center;
 }
 
 .subject {
   font-optical-sizing: auto;
   font-weight: 600;
   font-size: 17px;
+}
+
+.bar {
+  width: fit-content;
+  margin-right: 5px;
+  height: fit-content;
+  padding: 1px 3px;
+  border-radius: 5px;
+  background-color: #ffb5a7;
+  font-size: 12px;
+  color: whitesmoke;
+  font-weight: 600;
 }
