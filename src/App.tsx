@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { User } from "./types/Task";
+import { Task, User } from "./types/Task";
+import TaskCard from "./components/Todo-item/Todo-item";
 import "./App.css";
 
 function App() {
@@ -15,12 +16,15 @@ function App() {
 
   return (
     <>
-      <ul>
-        <li key={data.id}>
-          {data.object}
-          {data.username}
-        </li>
-      </ul>
+      <div className="left">{data.username}</div>
+
+      <div className="right">
+        <ul>
+          {data.tasks?.map((task: Task) => {
+            return <TaskCard task={task} />;
+          })}
+        </ul>
+      </div>
     </>
   );
 }
