@@ -17,7 +17,7 @@
       "status_id": "open",
       "subject": "Kick-off Meeting",
       "description": "Schedule a meeting with all stakeholders to discuss project goals and deliverables.",
-      "due_date": "2024-10-15 09:00:00"
+      "due_date": "2024-10-13 09:00:00"
     },
     {
       "id": "b4e348d9-48a4-4c2b-9c5a-5a20c4f45b83",
@@ -29,7 +29,7 @@
       "status_id": "in_progress",
       "subject": "Requirements Review",
       "description": "Go through the project requirements document and confirm with the team.",
-      "due_date": "2024-10-20 17:00:00"
+      "due_date": "2024-10-13 17:00:00"
     },
     {
       "id": "c9e4536b-ded2-4f2d-b5b4-0c1e0e67f3c0",
@@ -41,7 +41,7 @@
       "status_id": "open",
       "subject": "Team Check-in",
       "description": "Conduct a team check-in to discuss progress and any roadblocks.",
-      "due_date": "2024-10-22 11:00:00"
+      "due_date": "2024-10-14 11:00:00"
     }
   ]
 }

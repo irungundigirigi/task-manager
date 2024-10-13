@@ -1,0 +1,110 @@
+:root {
+  --background-color: #ffffff;
+  --task-background: #fffbdb;
+  --text-color: #ad2831;
+  --subject-color: #ff4d6d;
+  --bar-text-color: #ffffff;
+  
+  --priority-high: #ff4d4d;
+  --priority-normal: #ff5f5f;
+  --priority-low: hsl(0, 100%, 75%);
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background-color: var(--task-background);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;  color: var(--text-color);
+  width: 500px;
+  height: fit-content;
+  margin: 10px;
+  padding: 10px 10px;
+}
+
+input {
+  color: inherit; /* Inherit text color from parent */
+  font-family: inherit;
+  border: 1 px;
+  width: fit-content;
+  background-color: transparent;
+  font-size: inherit; /* Inherit font size from parent */
+  outline: none; /* Remove focus outline */
+}
+.topbar {
+  display: flex;
+  align-items: center;
+}
+
+.subject {
+  font-optical-sizing: auto;
+  font-weight: 500;
+  color: var(--subject-color);
+  font-size: 17px;
+}
+
+.description {
+  color: #774936;
+}
+
+.duedate {
+  display: flex;
+  align-items: center;
+  color: var(--subject-color);
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0 10px;
+}
+
+textarea {
+  color: inherit; /* Inherit text color from parent */
+  font-family: inherit;
+  border: 1px solid #ff4d6d;
+  border-radius: 10px;
+  width: 480px;
+  padding: 0 10px;
+  
+  background-color: transparent;
+  font-size: inherit; /* Inherit font size from parent */
+  outline: none; /* Remove focus outline */
+}
+.subjectTextarea{
+  height: 27px;
+}
+.descriptionTextarea{
+  height: auto;
+
+}
+
+.subject, .description {
+  cursor: text; /* Change cursor to indicate text can be edited */
+  width: fit-content;
+}
+
+.priority-low {
+  background-color: var(--priority-low);
+}
+
+.priority-normal {
+  background-color: var(--priority-normal);
+}
+
+.priority-high {
+  background-color: var(--priority-high);
+}
+
+.edit-icon {
+  cursor: pointer;
+  margin-left: auto; /* Pushes the icon to the right */
+  font-size: 20px; /* Adjust size as needed */
+}
+.bar {
+  width: fit-content;
+  margin-right: 5px;
+  height: fit-content;
+  padding: 1px 3px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: var(--bar-text-color);
+  font-weight: 600;
+}

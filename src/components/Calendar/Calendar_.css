@@ -1,0 +1,70 @@
+:root {
+    --calendar-background: #ffffff;
+    --calendar-task-background: #fffbdb;
+    --calendar-text-color: #ad2831;
+    --calendar-subject-color: #ff4d6d;
+    --calendar-bar-text-color: #ffffff;
+    
+    --calendar-priority-high: #ff4d4d;
+    --calendar-priority-normal: #ff5f5f;
+    --calendar-priority-low: #ff7f7f;
+  }
+  
+  .react-calendar__month-view__weekdays__weekday {
+      font-size: 13px;
+  }
+  
+  .react-calendar__navigation__label {
+      background-color: var(--calendar-background);
+      color: inherit;
+      border: 0;
+  }
+  
+  .react-calendar__navigation__arrow {
+      background-color: var(--calendar-background);
+      color: var(--calendar-text-color);
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 10px;
+      transition: background-color 0.3s;
+  }
+  
+  .react-calendar__navigation__arrow:hover {
+      background-color: var(--calendar-task-background);
+  }
+  
+  .react-calendar__navigation__next-button,
+  .react-calendar__navigation__prev-button {
+      color: var(--calendar-subject-color);
+  }
+  
+  @media (max-width: 600px) {
+      .react-calendar__navigation__arrow {
+          font-size: 16px;
+      }
+  }
+  
+  .react-calendar__tile {
+      background-color: var(--calendar-background);
+      font-family: inherit;
+      color: var(--calendar-text-color);
+      border: none;
+      padding: 10px;
+      text-align: center;
+  }
+  
+  .react-calendar__month-view__days__day--weekend {
+      background-color: rgb(255, 155, 155);
+      color: rgb(168, 58, 58);
+  }
+  
+  .react-calendar__tile--active {
+      background-color: var(--calendar-priority-high);
+      color: var(--calendar-bar-text-color);
+  }
+  
+  .react-calendar__tile--now {
+      border: 2px solid var(--calendar-subject-color);
+  }
+  

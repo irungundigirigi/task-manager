@@ -21,3 +21,10 @@ export interface User {
   email: string;
   tasks: Task[];
 }
+
+export interface CalendarProps {
+  onDateChange: ( date:Date ) => void;
+}
+export interface TaskProps {
+  task: Task
+}
