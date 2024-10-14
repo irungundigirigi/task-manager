@@ -57,7 +57,7 @@ function App() {
         </div>
         <div className="right">
           <ul>
-            <h2>Todays Tasks</h2>
+            <h2>Tasks for {adjustedDate.toLocaleString().split(",")[0]}</h2>
             {todaysTasks?.map((task: Task) => {
               return <TaskCard key={task.id} task={task} />;
             })}
