@@ -1,25 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import Calendar from "react-calendar";
 import "./Calendar_.css";
 
 interface CalendarProps {
   onDateChange: (date: Date) => void;
+  todaysDate: Date;
 }
 
-const Calendar_: React.FC<CalendarProps> = ({ onDateChange }) => {
-  const [date, setDate] = useState<Date>(new Date());
-
-  const handleDateChange = (newDate: Date) => {
-    setDate(newDate);
+const Calendar_: React.FC<CalendarProps> = ({ onDateChange, todaysDate }) => {
+  const onCalendarChange = (newDate: Date) => {
     onDateChange(newDate);
   };
 
   return (
     <>
-      <Calendar onChange={handleDateChange} value={date} />
+      <Calendar onChange={onCalendarChange} value={todaysDate} />
     </>
   );
 };
 
 export default Calendar_;
-

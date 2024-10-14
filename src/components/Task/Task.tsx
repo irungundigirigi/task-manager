@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
-import { BiSolidStopwatch } from 'react-icons/bi';
-import { BiPencil, BiCheck, BiX } from 'react-icons/bi'; 
-import { calculateRemainingHours } from '../../util/util'; 
-import './Task.css';
-//import Calendar_ from '../Calendar/Calendar_';
-import { TaskProps } from '../../types/Task';
+import React, { useState } from "react";
+import { BiSolidStopwatch } from "react-icons/bi";
+import { BiPencil, BiCheck, BiX } from "react-icons/bi";
+import { calculateRemainingHours } from "../../util/util";
+import "./Task.css";
+import { TaskProps } from "../../types/Task";
 
-const TaskCard:React.FC<TaskProps> = ({ task } ) => {
+const TaskCard: React.FC<TaskProps> = ({ task }) => {
   const remainingTime = calculateRemainingHours(task);
-  
+
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [subject, setSubject] = useState<string>(task.subject);
   const [description, setDescription] = useState<string>(task.description);
   const [priority, setPriority] = useState<string>(task.task_priority);
-  const [progress, setProgress] = useState<string>(task.status_id); 
+  const [progress, setProgress] = useState<string>(task.status_id);
 
-
-  const handleEditToggle = ():void => {
+  const handleEditToggle = (): void => {
     setIsEditing(!isEditing);
   };
 
@@ -24,48 +22,48 @@ const TaskCard:React.FC<TaskProps> = ({ task } ) => {
     setIsEditing(false);
   };
 
-  const handleCancel = ():void => {
+  const handleCancel = (): void => {
     setSubject(task.subject);
     setDescription(task.description);
     setIsEditing(false);
   };
 
-  const handlePriorityChange = ():void => {
-    if(isEditing) {
+  const handlePriorityChange = (): void => {
+    if (isEditing) {
       setPriority((prevPriority) => {
-        if (prevPriority === 'high') return 'normal';
-        if (prevPriority === 'normal') return 'low';
-        return 'high';
+        if (prevPriority === "high") return "normal";
+        if (prevPriority === "normal") return "low";
+        return "high";
       });
     }
   };
 
   const handleProgressChange = () => {
-    if(isEditing) {
+    if (isEditing) {
       setProgress((prevProgress) => {
-        if (prevProgress === 'in_progress') return 'closed';
-        if (prevProgress === 'open') return 'in_progress';
-        return 'open';
+        if (prevProgress === "in_progress") return "closed";
+        if (prevProgress === "open") return "in_progress";
+        return "open";
       });
-    };
+    }
   };
 
   return (
     <div className="task">
       <div className="topbar">
-        <div 
+        <div
           className={`bar ${
-            priority === 'high' ? 'priority-high' :
-            priority === 'normal' ? 'priority-normal' : 'priority-low'
+            priority === "high"
+              ? "priority-high"
+              : priority === "normal"
+              ? "priority-normal"
+              : "priority-low"
           }`}
           onClick={handlePriorityChange}
         >
           {priority}
         </div>
-        <div 
-          className="status"
-          onClick={handleProgressChange}
-        >
+        <div className="status" onClick={handleProgressChange}>
           {progress}
         </div>
         <div className="duedate">
@@ -85,10 +83,9 @@ const TaskCard:React.FC<TaskProps> = ({ task } ) => {
       <div className="subject">
         {isEditing ? (
           <textarea
-            className='subjectTextarea'
+            className="subjectTextarea"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-
           />
         ) : (
           subject
@@ -97,7 +94,7 @@ const TaskCard:React.FC<TaskProps> = ({ task } ) => {
       <div className="description">
         {isEditing ? (
           <textarea
-            className='descriptionTextarea'
+            className="descriptionTextarea"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -107,6 +104,6 @@ const TaskCard:React.FC<TaskProps> = ({ task } ) => {
       </div>
     </div>
   );
-}
+};
 
 export default TaskCard;

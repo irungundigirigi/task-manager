@@ -4,32 +4,32 @@
   --text-color: #ad2831;
   --subject-color: #ff4d6d;
   --bar-text-color: #ffffff;
-  
   --priority-high: #ff4d4d;
   --priority-normal: #ff5f5f;
   --priority-low: hsl(0, 100%, 75%);
 }
 
 .task {
+  width: 100%;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: column;
   text-align: left;
   background-color: var(--task-background);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;  color: var(--text-color);
-  width: 500px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  color: var(--text-color);
   height: fit-content;
-  margin: 10px;
   padding: 10px 10px;
 }
 
 input {
-  color: inherit; /* Inherit text color from parent */
+  color: inherit;
   font-family: inherit;
   border: 1 px;
   width: fit-content;
   background-color: transparent;
-  font-size: inherit; /* Inherit font size from parent */
-  outline: none; /* Remove focus outline */
+  font-size: inherit;
+  outline: none;
 }
 .topbar {
   display: flex;
@@ -57,27 +57,27 @@ input {
 }
 
 textarea {
-  color: inherit; /* Inherit text color from parent */
+  color: inherit;
   font-family: inherit;
   border: 1px solid #ff4d6d;
   border-radius: 10px;
   width: 480px;
   padding: 0 10px;
-  
+
   background-color: transparent;
-  font-size: inherit; /* Inherit font size from parent */
-  outline: none; /* Remove focus outline */
+  font-size: inherit;
+  outline: none;
 }
-.subjectTextarea{
+.subjectTextarea {
   height: 27px;
 }
-.descriptionTextarea{
+.descriptionTextarea {
   height: auto;
-
 }
 
-.subject, .description {
-  cursor: text; /* Change cursor to indicate text can be edited */
+.subject,
+.description {
+  cursor: text;
   width: fit-content;
 }
 
