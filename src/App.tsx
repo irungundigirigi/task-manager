@@ -18,21 +18,24 @@ function App() {
   }, []);
 
   const handleDateChange = async (date: Date) => {
-    console.log(`handleDateChange: ${date}`);
     try {
       await setSelectedDate(date);
-      console.log(`date set in state: ${selectedDate}`);
     } catch (error) {
       console.log(error);
     }
   };
 
+  /** Adjust date to local time before converting it to ISO string */
+  const adjustedDate: Date = new Date(
+    selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000
+  );
+
+  const adjustedDateStr: string = adjustedDate.toISOString().split("T")[0];
+
   /* Filter todays tasks */
   const todaysTasks = data.tasks?.filter((task: Task) => {
     const dueDate = task.due_date.split(" ")[0];
-    console.log(selectedDate);
-    const selectedDateStr: string = selectedDate.toISOString().split("T")[0];
-    return dueDate === selectedDateStr;
+    return dueDate === adjustedDateStr;
   });
 
   return (
