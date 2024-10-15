@@ -11,7 +11,9 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("./data/user.json");
+      const response = await fetch(
+        "http://localhost:8080/api/v1/users/a3f9d8d3-39b3-4b65-bff0-12a0e6b7c5c3"
+      );
       setData(await response.json());
     };
     fetchData();

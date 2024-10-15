@@ -3,6 +3,7 @@ import { BiSolidStopwatch } from "react-icons/bi";
 import { BiPencil, BiCheck, BiX } from "react-icons/bi";
 import { calculateRemainingHours } from "../../util/util";
 import "./Task.css";
+import { Task } from "../../types/Task";
 import { TaskProps } from "../../types/Task";
 
 const TaskCard: React.FC<TaskProps> = ({ task }) => {
@@ -13,6 +14,13 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
   const [description, setDescription] = useState<string>(task.description);
   const [priority, setPriority] = useState<string>(task.task_priority);
   const [progress, setProgress] = useState<string>(task.status_id);
+
+  const [taskobj, setTask] = useState<Partial<Task>>({
+    subject: task.subject,
+    description: task.description,
+    task_priority: task.task_priority,
+    status_id: task.status_id,
+  });
 
   const handleEditToggle = (): void => {
     setIsEditing(!isEditing);
@@ -30,21 +38,30 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
 
   const handlePriorityChange = (): void => {
     if (isEditing) {
-      setPriority((prevPriority) => {
-        if (prevPriority === "high") return "normal";
-        if (prevPriority === "normal") return "low";
-        return "high";
-      });
+      setTask((prev) => ({
+        ...prev,
+        task_priority:
+          prev.task_priority === "high"
+            ? "normal"
+            : prev.task_priority === "normal"
+            ? "low"
+            : "high",
+      }));
     }
   };
 
   const handleProgressChange = () => {
+    console.log("clicked");
     if (isEditing) {
-      setProgress((prevProgress) => {
-        if (prevProgress === "in_progress") return "closed";
-        if (prevProgress === "open") return "in_progress";
-        return "open";
-      });
+      setTask((prev) => ({
+        ...prev,
+        task_id:
+          prev.status_id === "open"
+            ? "in_progress"
+            : prev.status_id === "in_progress"
+            ? "closed"
+            : "open",
+      }));
     }
   };
 
@@ -61,10 +78,10 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
           }`}
           onClick={handlePriorityChange}
         >
-          {priority}
+          {taskobj.task_priority}
         </div>
         <div className="status" onClick={handleProgressChange}>
-          {progress}
+          {taskobj.status_id}
         </div>
         <div className="duedate">
           <BiSolidStopwatch /> {remainingTime}
