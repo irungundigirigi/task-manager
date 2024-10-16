@@ -51,11 +51,10 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
   };
 
   const handleProgressChange = () => {
-    console.log("clicked");
     if (isEditing) {
       setTask((prev) => ({
         ...prev,
-        task_id:
+        status_id:
           prev.status_id === "open"
             ? "in_progress"
             : prev.status_id === "in_progress"
