@@ -10,10 +10,6 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
   const remainingTime = calculateRemainingHours(task);
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [subject, setSubject] = useState<string>(task.subject);
-  const [description, setDescription] = useState<string>(task.description);
-  const [priority, setPriority] = useState<string>(task.task_priority);
-  const [progress, setProgress] = useState<string>(task.status_id);
 
   const [taskobj, setTask] = useState<Partial<Task>>({
     subject: task.subject,
@@ -64,14 +60,31 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
     }
   };
 
+  const handleBodyChange = (value: string, field: string): void => {
+    if (isEditing) {
+      if (field === "description") {
+        setTask((prev) => ({
+          ...prev,
+          description: value,
+        }));
+      } else {
+        setTask((prev) => ({
+          ...prev,
+          subject: value,
+        }));
+      }
+    }
+    console.log(taskobj.description);
+  };
+
   return (
     <div className="task">
       <div className="topbar">
         <div
           className={`bar ${
-            priority === "high"
+            taskobj.task_priority === "high"
               ? "priority-high"
-              : priority === "normal"
+              : taskobj.task_priority === "normal"
               ? "priority-normal"
               : "priority-low"
           }`}
@@ -99,23 +112,25 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
       <div className="subject">
         {isEditing ? (
           <textarea
+            name="subject"
             className="subjectTextarea"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
+            value={taskobj.subject}
+            onChange={(e) => handleBodyChange(e.target.value, "subject")}
           />
         ) : (
-          subject
+          taskobj.subject
         )}
       </div>
       <div className="description">
         {isEditing ? (
           <textarea
+            name="description"
             className="descriptionTextarea"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={taskobj.description}
+            onChange={(e) => handleBodyChange(e.target.value, "description")}
           />
         ) : (
-          description
+          taskobj.description
         )}
       </div>
     </div>
