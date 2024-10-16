@@ -27,9 +27,12 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
   };
 
   const handleCancel = (): void => {
-    setSubject(task.subject);
-    setDescription(task.description);
-    setIsEditing(false);
+    setTask({
+      subject: task.subject,
+      description: task.description,
+      task_priority: task.task_priority,
+      status_id: task.status_id,
+    });
   };
 
   const handlePriorityChange = (): void => {
