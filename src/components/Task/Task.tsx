@@ -7,7 +7,7 @@ import "./Task.css";
 import { Task } from "../../types/Task";
 import { TaskProps } from "../../types/Task";
 
-const TaskCard: React.FC<TaskProps> = ({ task }) => {
+const TaskCard: React.FC<TaskProps> = ({ task, handleRender }) => {
   const remainingTime = calculateRemainingHours(task);
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -65,17 +65,10 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
   };
 
   const handleTaskDelete = async (taskId: string) => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/v1/tasks/${taskId}`,
-        {
-          method: "DELETE",
-        }
-      );
-      await response.json();
-    } catch (error) {
-      console.log(error);
-    }
+    await fetch(`http://localhost:8080/api/v1/tasks/${taskId}`, {
+      method: "DELETE",
+    });
+    handleRender();
   };
 
   const handleBodyChange = (value: string, field: string): void => {
