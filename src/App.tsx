@@ -8,6 +8,11 @@ import "./App.css";
 function App() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [data, setData] = useState<Partial<User>>({});
+  const [render, setRender] = useState<boolean>(true);
+
+  const handleRender = () => {
+    setRender(!render);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +22,7 @@ function App() {
       setData(await response.json());
     };
     fetchData();
-  }, []);
+  }, [render]);
 
   const handleDateChange = async (date: Date) => {
     try {
@@ -61,7 +66,13 @@ function App() {
           <ul>
             <h2>Tasks for {adjustedDate.toLocaleString().split(",")[0]}</h2>
             {todaysTasks?.map((task: Task) => {
-              return <TaskCard key={task.id} task={task} />;
+              return (
+                <TaskCard
+                  key={task.id}
+                  task={task}
+                  handleRender={handleRender}
+                />
+              );
             })}
           </ul>
         </div>
