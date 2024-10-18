@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BiSolidStopwatch } from "react-icons/bi";
 import { BiPencil, BiCheck, BiX } from "react-icons/bi";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 import { calculateRemainingHours } from "../../util/util";
 import "./Task.css";
 import { Task } from "../../types/Task";
@@ -63,6 +64,20 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
     }
   };
 
+  const handleTaskDelete = async (taskId: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/v1/tasks/${taskId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      await response.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleBodyChange = (value: string, field: string): void => {
     if (isEditing) {
       if (field === "description") {
@@ -101,14 +116,19 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
         <div className="duedate">
           <BiSolidStopwatch /> {remainingTime}
         </div>
-        <div className="edit-icon" onClick={handleEditToggle}>
+        <div className="edit-icon">
           {isEditing ? (
             <>
               <BiCheck className="animating" onClick={handleSave} />
               <BiX onClick={handleCancel} />
             </>
           ) : (
-            <BiPencil />
+            <>
+              <BiPencil onClick={handleEditToggle} />
+              <MdOutlineDeleteOutline
+                onClick={() => handleTaskDelete(task.id)}
+              />
+            </>
           )}
         </div>
       </div>
