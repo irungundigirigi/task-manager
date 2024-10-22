@@ -14,7 +14,7 @@ const CreateTask: React.FC = ({ toggleCreateUser, handleRender }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch("http://localhost:8080/api/v1/tasks", {
+      const response = await fetch("http://localhost:8080/api/v1/tasks", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -23,8 +23,10 @@ const CreateTask: React.FC = ({ toggleCreateUser, handleRender }) => {
         body: JSON.stringify(formDetails),
       });
       handleRender();
-      toggleCreateUser();
-      setFormDetails(initialState);
+      if (response.status == 200) {
+        toggleCreateUser();
+        setFormDetails(initialState);
+      }
     } catch (error) {
       console.log(error);
     }
