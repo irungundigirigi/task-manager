@@ -23,8 +23,9 @@ export interface User {
 }
 
 export interface CalendarProps {
-  onDateChange: ( date:Date ) => void;
+  onDateChange: (date: Date) => void;
 }
 export interface TaskProps {
-  task: Task
+  task: Task;
+  handleRender: () => void;
 }
