@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { Task, User } from "./types/Task";
 import { FaRegUserCircle } from "react-icons/fa";
+import { BsPlus } from "react-icons/bs";
 import TaskCard from "./components/Task/Task";
 import Calendar_ from "./components/Calendar/Calendar_";
+import CreateTask from "./components/Create-Task/CreateTask";
 import "./App.css";
 
 function App() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [data, setData] = useState<Partial<User>>({});
   const [render, setRender] = useState<boolean>(true);
+  const [createTask, setUserCreate] = useState<boolean>(true);
 
   const handleRender = () => {
     setRender(!render);
@@ -23,6 +26,10 @@ function App() {
     };
     fetchData();
   }, [render]);
+
+  const toggleUserCreate = () => {
+    setUserCreate(!createTask);
+  };
 
   const handleDateChange = async (date: Date) => {
     try {
@@ -41,7 +48,7 @@ function App() {
 
   /* Filter todays tasks */
   const todaysTasks = data.tasks?.filter((task: Task) => {
-    const dueDate = task.due_date.split(" ")[0];
+    const dueDate = task.due_date.split("T")[0];
     return dueDate === adjustedDateStr;
   });
 
@@ -64,6 +71,23 @@ function App() {
         </div>
         <div className="right">
           <ul>
+            {createTask && (
+              <div onClick={toggleUserCreate}>
+                <h2>
+                  Create Task <BsPlus />
+                </h2>
+              </div>
+            )}
+
+            {!createTask && (
+              <>
+                <h3>Create new Task</h3>
+                <CreateTask
+                  toggleCreateUser={toggleUserCreate}
+                  handleRender={handleRender}
+                />
+              </>
+            )}
             <h2>Tasks for {adjustedDate.toLocaleString().split(",")[0]}</h2>
             {todaysTasks?.map((task: Task) => {
               return (
