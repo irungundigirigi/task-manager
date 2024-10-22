@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--task-background);
+  color: var(--text-color);
+  padding: 10px 10px;
+}
+label {
+  font-weight: 400;
+}
+input,
+select {
+  width: 80%;
+  margin: 5px 10px 5px 5px;
+  padding: 0 5px;
+  border: 1px solid #ff4d6d;
+  border-radius: 10px;
+  color: inherit;
+  font-family: inherit;
+  border: 1 px;
+  background-color: transparent;
+  font-size: inherit;
+  outline: none;
+}
+.btn {
+  background-color: var(--priority-high);
+  color: aliceblue;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 25px;
+}
