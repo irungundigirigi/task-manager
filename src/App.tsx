@@ -11,15 +11,11 @@ import "./App.css";
 function App() {
   const {
     user_data,
-    //c_setRender,
     todaysTasks,
     adjustedDate,
-    c_createTask,
-    // c_setUserCreate,
-    // c_setSelectedDate,
-    //c_handleDateChange,
-    c_handleRender,
-    c_toggleUserCreate,
+    createTask,
+    handleRender,
+    toggleUserCreate,
   } = useContext(AppContext);
 
   return (
@@ -38,15 +34,15 @@ function App() {
         </div>
         <div className="right">
           <ul>
-            {c_createTask && (
-              <div onClick={c_toggleUserCreate}>
+            {createTask && (
+              <div onClick={toggleUserCreate}>
                 <h2>
                   Create Task <BsPlus />
                 </h2>
               </div>
             )}
 
-            {!c_createTask && (
+            {!createTask && (
               <>
                 <h3>Create new Task</h3>
                 <CreateTask />
@@ -58,7 +54,7 @@ function App() {
                 <TaskCard
                   key={task.id}
                   task={task}
-                  handleRender={c_handleRender}
+                  handleRender={handleRender}
                 />
               );
             })}
