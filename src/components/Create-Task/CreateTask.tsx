@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, SyntheticEvent } from "react";
 import "./Create_Task.css";
 import { AppContext } from "../../context/Provider";
 
@@ -13,7 +13,7 @@ const CreateTask: React.FC = () => {
     description: "",
   };
   const [formDetails, setFormDetails] = useState(initialState);
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
       const response = await fetch("http://localhost:8080/api/v1/tasks", {
