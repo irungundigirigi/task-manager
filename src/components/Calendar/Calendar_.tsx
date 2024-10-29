@@ -4,15 +4,15 @@ import "./Calendar_.css";
 import { AppContext } from "../../context/Provider";
 
 const Calendar_: React.FC = () => {
-  const { c_selectedDate, c_handleDateChange } = useContext(AppContext);
+  const { selectedDate, handleDateChange } = useContext(AppContext);
 
   const onCalendarChange = (newDate: Date) => {
-    c_handleDateChange(newDate);
+    handleDateChange(newDate);
   };
 
   return (
     <>
-      <Calendar onChange={onCalendarChange} value={c_selectedDate} />
+      <Calendar onChange={onCalendarChange} value={selectedDate} />
     </>
   );
 };
