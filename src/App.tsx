@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AppContext } from "./context/Provider";
 import { Task, User } from "./types/Task";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsPlus } from "react-icons/bs";
@@ -8,46 +9,27 @@ import CreateTask from "./components/Create-Task/CreateTask";
 import "./App.css";
 
 function App() {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [data, setData] = useState<Partial<User>>({});
-  const [render, setRender] = useState<boolean>(true);
-  const [createTask, setUserCreate] = useState<boolean>(true);
-
-  const handleRender = () => {
-    setRender(!render);
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "http://localhost:8080/api/v1/users/a3f9d8d3-39b3-4b65-bff0-12a0e6b7c5c3"
-      );
-      setData(await response.json());
-    };
-    fetchData();
-  }, [render]);
-
-  const toggleUserCreate = () => {
-    setUserCreate(!createTask);
-  };
-
-  const handleDateChange = async (date: Date) => {
-    try {
-      await setSelectedDate(date);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    user_data,
+    //c_setRender,
+    c_selectedDate,
+    c_createTask,
+    // c_setUserCreate,
+    // c_setSelectedDate,
+    c_handleDateChange,
+    c_handleRender,
+    c_toggleUserCreate,
+  } = useContext(AppContext);
 
   /** Adjust date to local time before converting it to ISO string */
   const adjustedDate: Date = new Date(
-    selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000
+    c_selectedDate.getTime() - c_selectedDate.getTimezoneOffset() * 60000
   );
 
   const adjustedDateStr: string = adjustedDate.toISOString().split("T")[0];
 
   /* Filter todays tasks */
-  const todaysTasks = data.tasks?.filter((task: Task) => {
+  const todaysTasks = user_data.tasks?.filter((task: Task) => {
     const dueDate = task.due_date.split("T")[0];
     return dueDate === adjustedDateStr;
   });
@@ -57,34 +39,34 @@ function App() {
       <div className="header">
         <div className="account">
           <FaRegUserCircle className="user-icon" />
-          <span className="username">{data.username}</span>
+          <span className="username">{user_data.username}</span>
         </div>
       </div>
       <div className="tm">
         <div className="left">
           <div className="calendar">
             <Calendar_
-              todaysDate={selectedDate}
-              onDateChange={handleDateChange}
+              todaysDate={c_selectedDate}
+              onDateChange={c_handleDateChange}
             />
           </div>
         </div>
         <div className="right">
           <ul>
-            {createTask && (
-              <div onClick={toggleUserCreate}>
+            {c_createTask && (
+              <div onClick={c_toggleUserCreate}>
                 <h2>
                   Create Task <BsPlus />
                 </h2>
               </div>
             )}
 
-            {!createTask && (
+            {!c_createTask && (
               <>
                 <h3>Create new Task</h3>
                 <CreateTask
-                  toggleCreateUser={toggleUserCreate}
-                  handleRender={handleRender}
+                  toggleCreateUser={c_toggleUserCreate}
+                  handleRender={c_handleRender}
                 />
               </>
             )}
@@ -94,7 +76,7 @@ function App() {
                 <TaskCard
                   key={task.id}
                   task={task}
-                  handleRender={handleRender}
+                  handleRender={c_handleRender}
                 />
               );
             })}
