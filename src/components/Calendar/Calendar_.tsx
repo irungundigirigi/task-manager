@@ -1,20 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Calendar from "react-calendar";
 import "./Calendar_.css";
+import { AppContext } from "../../context/Provider";
 
-interface CalendarProps {
-  onDateChange: (date: Date) => void;
-  todaysDate: Date;
-}
+const Calendar_: React.FC = () => {
+  const { c_selectedDate, c_handleDateChange } = useContext(AppContext);
 
-const Calendar_: React.FC<CalendarProps> = ({ onDateChange, todaysDate }) => {
   const onCalendarChange = (newDate: Date) => {
-    onDateChange(newDate);
+    c_handleDateChange(newDate);
   };
 
   return (
     <>
-      <Calendar onChange={onCalendarChange} value={todaysDate} />
+      <Calendar onChange={onCalendarChange} value={c_selectedDate} />
     </>
   );
 };
