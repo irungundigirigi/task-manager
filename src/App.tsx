@@ -1,6 +1,6 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "./context/Provider";
-import { Task, User } from "./types/Task";
+import { Task } from "./types/Task";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsPlus } from "react-icons/bs";
 import TaskCard from "./components/Task/Task";
@@ -12,27 +12,15 @@ function App() {
   const {
     user_data,
     //c_setRender,
-    c_selectedDate,
+    todaysTasks,
+    adjustedDate,
     c_createTask,
     // c_setUserCreate,
     // c_setSelectedDate,
-    c_handleDateChange,
+    //c_handleDateChange,
     c_handleRender,
     c_toggleUserCreate,
   } = useContext(AppContext);
-
-  /** Adjust date to local time before converting it to ISO string */
-  const adjustedDate: Date = new Date(
-    c_selectedDate.getTime() - c_selectedDate.getTimezoneOffset() * 60000
-  );
-
-  const adjustedDateStr: string = adjustedDate.toISOString().split("T")[0];
-
-  /* Filter todays tasks */
-  const todaysTasks = user_data.tasks?.filter((task: Task) => {
-    const dueDate = task.due_date.split("T")[0];
-    return dueDate === adjustedDateStr;
-  });
 
   return (
     <div className="app">
@@ -45,10 +33,7 @@ function App() {
       <div className="tm">
         <div className="left">
           <div className="calendar">
-            <Calendar_
-              todaysDate={c_selectedDate}
-              onDateChange={c_handleDateChange}
-            />
+            <Calendar_ />
           </div>
         </div>
         <div className="right">
@@ -64,10 +49,7 @@ function App() {
             {!c_createTask && (
               <>
                 <h3>Create new Task</h3>
-                <CreateTask
-                  toggleCreateUser={c_toggleUserCreate}
-                  handleRender={c_handleRender}
-                />
+                <CreateTask />
               </>
             )}
             <h2>Tasks for {adjustedDate.toLocaleString().split(",")[0]}</h2>
