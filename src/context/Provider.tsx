@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from "react";
 import { User } from "../types/Task";
+import { Task } from "../types/Task";
 
 const AppContext = createContext<any>({});
 
@@ -35,6 +36,19 @@ const AppProvider = ({ children }) => {
     c_setUserCreate(!c_createTask);
   };
 
+  /** Adjust date to local time before converting it to ISO string */
+  const adjustedDate: Date = new Date(
+    c_selectedDate.getTime() - c_selectedDate.getTimezoneOffset() * 60000
+  );
+
+  const adjustedDateStr: string = adjustedDate.toISOString().split("T")[0];
+
+  /* Filter todays tasks */
+  const todaysTasks = user_data.tasks?.filter((task: Task) => {
+    const dueDate = task.due_date.split("T")[0];
+    return dueDate === adjustedDateStr;
+  });
+
   return (
     <AppContext.Provider
       value={{
@@ -47,6 +61,8 @@ const AppProvider = ({ children }) => {
         c_handleDateChange,
         c_handleRender,
         c_toggleUserCreate,
+        todaysTasks,
+        adjustedDate,
       }}
     >
       {children}
