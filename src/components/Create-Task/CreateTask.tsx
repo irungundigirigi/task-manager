@@ -1,7 +1,9 @@
-import React, { useState, useRef, FormHTMLAttributes } from "react";
+import React, { useState, useContext } from "react";
 import "./Create_Task.css";
+import { AppContext } from "../../context/Provider";
 
-const CreateTask: React.FC = ({ toggleCreateUser, handleRender }) => {
+const CreateTask: React.FC = () => {
+  const { c_handleRender, c_toggleUserCreate } = useContext(AppContext);
   const initialState = {
     user_id: "a3f9d8d3-39b3-4b65-bff0-12a0e6b7c5c3",
     due_date: "",
@@ -22,9 +24,9 @@ const CreateTask: React.FC = ({ toggleCreateUser, handleRender }) => {
         method: "POST",
         body: JSON.stringify(formDetails),
       });
-      handleRender();
+      c_handleRender();
       if (response.status == 200) {
-        toggleCreateUser();
+        c_toggleUserCreate();
         setFormDetails(initialState);
       }
     } catch (error) {
