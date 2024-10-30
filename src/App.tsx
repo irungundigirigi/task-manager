@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { AppContext } from "./context/Provider";
+import { useAppContext } from "./context/Provider";
 import { Task } from "./types/Task";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsPlus } from "react-icons/bs";
@@ -10,7 +9,7 @@ import "./App.css";
 
 function App() {
   const { user_data, todaysTasks, createTask, handleRender, toggleUserCreate } =
-    useContext(AppContext);
+    useAppContext();
 
   return (
     <div className="app">
