@@ -1,11 +1,20 @@
-import { useState, useEffect, createContext } from "react";
-import { User } from "../types/Task";
+import { useState, useEffect, createContext, useContext } from "react";
+import { User, AppContextType } from "../types/Task";
 import { getTodaysTasks } from "../util/util";
 
-const AppContext = createContext<any>({});
+const AppContext = createContext<AppContextType | null>(null);
 
-const AppProvider = ({ children }) => {
-  const [user_data, setData] = useState<Partial<User>>({});
+export const useAppContext = () => {
+  const app_context = useContext(AppContext);
+
+  if (!app_context) {
+    throw new Error("app context not found");
+  }
+  return app_context;
+};
+
+const AppProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user_data, setData] = useState({} as User);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [render, setRender] = useState<boolean>(true);
   const [createTask, setUserCreate] = useState<boolean>(true);
