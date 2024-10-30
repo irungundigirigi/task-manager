@@ -21,6 +21,18 @@ export interface User {
   email: string;
   tasks: Task[];
 }
+export interface AppContextType {
+  user_data: User;
+  setRender: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedDate: Date;
+  createTask: boolean;
+  setUserCreate: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+  handleDateChange: (date: Date) => Promise<void>;
+  handleRender: () => void;
+  toggleUserCreate: () => void;
+  todaysTasks: Task[] | undefined;
+}
 
 export interface CalendarProps {
   onDateChange: (date: Date) => void;
