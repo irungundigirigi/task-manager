@@ -9,14 +9,8 @@ import CreateTask from "./components/Create-Task/CreateTask";
 import "./App.css";
 
 function App() {
-  const {
-    user_data,
-    todaysTasks,
-    adjustedDate,
-    createTask,
-    handleRender,
-    toggleUserCreate,
-  } = useContext(AppContext);
+  const { user_data, todaysTasks, createTask, handleRender, toggleUserCreate } =
+    useContext(AppContext);
 
   return (
     <div className="app">
@@ -48,7 +42,7 @@ function App() {
                 <CreateTask />
               </>
             )}
-            <h2>Tasks for {adjustedDate.toLocaleString().split(",")[0]}</h2>
+
             {todaysTasks?.map((task: Task) => {
               return (
                 <TaskCard
