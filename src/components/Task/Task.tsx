@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { BiSolidStopwatch } from "react-icons/bi";
 import { BiPencil, BiCheck, BiX } from "react-icons/bi";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { calculateRemainingHours } from "../../util/util";
+import { getRemainingTime } from "../../util/util";
 import "./Task.css";
 import { Task } from "../../types/Task";
 import { TaskProps } from "../../types/Task";
 
 const TaskCard: React.FC<TaskProps> = ({ task, handleRender }) => {
-  const remainingTime = calculateRemainingHours(task);
+  const remainingTime = getRemainingTime(task);
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
