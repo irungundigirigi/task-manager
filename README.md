@@ -1,4 +1,4 @@
-![Task manager screenshot](/task-manager-screenshot.jpg)
+![Task manager screenshot](/public/task-manager-screenshot.jpg)
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
